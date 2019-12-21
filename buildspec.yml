@@ -1,0 +1,47 @@
+version: 0.2
+
+env:
+  variables:
+    AWS_STORAGE_BUCKET_NAME: "TO BE PROVIDED"
+    DJANGO_SECRET_KEY: "TO BE PROVIDED (GENERATE ONE)"
+    DJANGO_SETTINGS_MODULE: "django_prod_quickstart.settings.production"
+    EMAIL_HOST: "TO BE PROVIDED (IF REQUIRED)"
+    EMAIL_HOST_PASSWORD: "TO BE PROVIDED (IF REQUIRED)"
+    EMAIL_HOST_PORT: "TO BE PROVIDED (IF REQUIRED)"
+    EMAIL_HOST_USER: "TO BE PROVIDED (IF REQUIRED)"
+    RDS_DB_NAME: "TO BE PROVIDED"
+    RDS_HOSTNAME: "TO BE PROVIDED"
+    RDS_PASSWORD: "TO BE PROVIDED"
+    RDS_PORT: "5432"
+    RDS_USERNAME: "TO BE PROVIDED"
+
+phases:
+  install:
+    commands:
+      - pip install virtualenv
+      - virtualenv /tmp/env
+      - . /tmp/env/bin/activate
+      - pip install --upgrade pip==9.0.3 setuptools wheel
+      - pip install -r requirements.txt
+      - echo "Installing jq..."
+      - curl -qL -o jq https://stedolan.github.io/jq/download/linux64/jq && chmod +x ./jq
+  pre_build:
+    commands:
+      - echo "Running static files collection"
+      - python manage.py collectstatic --noinput --clear
+      - python manage.py compress || true
+      - echo "Running tests"
+      - coverage run --source='.' --omit='src/*' manage.py test
+      - export FAILED_TESTS=FALSE
+      - echo "Generating coverage reports"
+      - coverage html
+  build:
+    commands:
+      - echo "Deploying to prod"
+      - tmp=$(mktemp)
+      - ./jq ".prod.environment_variables.CODEBUILD_RESOLVED_SOURCE_VERSION = \"$CODEBUILD_RESOLVED_SOURCE_VERSION\"" zappa_settings.json > "$tmp"
+      - mv "$tmp" zappa_settings.json
+      - zappa update prod
+      - echo "Running database migration"
+      - python manage.py migrate
+      - echo "Successfully ran tests and deployed to prod"

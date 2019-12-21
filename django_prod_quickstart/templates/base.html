@@ -1,0 +1,107 @@
+{% load static from staticfiles %}
+{% load compress %}
+
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+    <head>
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <title>{% block title %}{% endblock title %}</title>
+        <meta name="description" content="{% block description %}{% endblock description %}" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <link rel="icon" type="image/png" href="{% static 'img/django-logo-favicon.png' %}">
+
+        {% block extra_head_content %}
+            {# Override this in templates to add meta tags #}
+        {% endblock %}
+
+        {# Global stylesheets #}
+        {% compress css %}
+        <link rel="stylesheet" href="{% static 'css/site.css' %}">
+
+        {% block extra_css %}
+            {# Override this in templates to add extra stylesheets #}
+        {% endblock %}
+        {% endcompress %}
+
+        {% block extra_before_the_fold_js %}
+            {# Override this in templates to add JS that must run before HTML is rendered. Keep to a minimum. #}
+        {% endblock %}
+    </head>
+
+    <body>
+        {# Add some kind of header here #}
+
+        {% block content %}Base template{% endblock %}
+
+        {# Add some kind of footer here #}
+
+        <noscript id="deferred-styles">
+            <!-- Google fonts -->
+            <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Open+Sans:300' type='text/css'>
+            <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Source+Sans+Pro' type='text/css'>
+        </noscript>
+
+        {% block extra_external_js %}
+        {% endblock %}
+
+        {% compress js %}
+        {# Global javascript #}
+        <script type="application/javascript" src="{% static 'js/site.js' %}"></script>
+
+        {# Add any JS/trackers that should be loaded on every page #}
+        <script>
+            function getCookie(name) {
+              var cookieValue = null;
+              if (document.cookie && document.cookie != '') {
+                  var cookies = document.cookie.split(';');
+                  for (var i = 0; i < cookies.length; i++) {
+                      var cookie = jQuery.trim(cookies[i]);
+                      // Does this cookie string begin with the name we want?
+                      if (cookie.substring(0, name.length + 1) == (name + '=')) {
+                          cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                          break;
+                      }
+                  }
+              }
+              return cookieValue;
+            }
+            var csrftoken = getCookie('csrftoken');
+
+            function csrfSafeMethod(method) {
+              // these HTTP methods do not require CSRF protection
+              return (/^(GET|HEAD|OPTIONS|TRACE)$/.test(method));
+            }
+
+            // Example using jQuery of adding CSRF token to every ajax request. Uncomment to use after adding jQuery.
+            // $.ajaxSetup({
+            //  beforeSend: function(xhr, settings) {
+            //      if (!csrfSafeMethod(settings.type) && !this.crossDomain) {
+            //          xhr.setRequestHeader("X-CSRFToken", csrftoken);
+            //      }
+            //  }
+            //});
+        </script>
+        <script>
+          var loadDeferredStyles = function() {
+            var addStylesNode = document.getElementById("deferred-styles");
+            var replacement = document.createElement("div");
+            replacement.innerHTML = addStylesNode.textContent;
+            document.body.appendChild(replacement)
+            addStylesNode.parentElement.removeChild(addStylesNode);
+          };
+          var raf = requestAnimationFrame || mozRequestAnimationFrame ||
+              webkitRequestAnimationFrame || msRequestAnimationFrame;
+          if (raf) raf(function() { window.setTimeout(loadDeferredStyles, 0); });
+          else window.addEventListener('load', loadDeferredStyles);
+        </script>
+
+        {% block extra_js %}
+            {# Override this in templates to add extra javascript #}
+        {% endblock %}
+        {% endcompress %}
+    </body>
+</html>
