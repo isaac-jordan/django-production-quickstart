@@ -42,6 +42,7 @@ EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 # EMAIL_USE_TLS = True
 
 try:
+    # Create a ".local.py" file if you want to override some things locally but not check them into version-control
     from .local import *
 except ImportError:
     pass

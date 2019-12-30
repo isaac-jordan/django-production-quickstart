@@ -7,6 +7,14 @@ sys.path.append(PROJECT_DIR)
 
 INSTALLED_APPS = [
     'django_prod_quickstart',
+    'home',
+    'registration',
+    # Add new apps here
+
+    # Third party apps
+    'compressor',
+
+    # Built-in Django apps
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -43,9 +51,10 @@ ROOT_URLCONF = 'django_prod_quickstart.urls'
 
 WSGI_APPLICATION = 'django_prod_quickstart.wsgi.application'
 
-# Database
-# https://docs.djangoproject.com/en/1.9/ref/settings/#databases
+LOGIN_REDIRECT_URL = '/'
+LOGOUT_REDIRECT_URL = '/'
 
+# Database
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
@@ -54,7 +63,6 @@ DATABASES = {
 }
 
 # Internationalization
-# https://docs.djangoproject.com/en/1.9/topics/i18n/
 
 LANGUAGE_CODE = 'en-us'
 
@@ -67,7 +75,6 @@ USE_L10N = True
 USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/1.9/howto/static-files/
 
 STATICFILES_FINDERS = [
     'django.contrib.staticfiles.finders.FileSystemFinder',
