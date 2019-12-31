@@ -3,53 +3,72 @@ A quick-start repository that sets you up with a production-ready Django site de
 
 ## Getting Started
 
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
+These instructions will get you a copy of the project up and running on your local machine 
+for development and testing purposes. See deployment for notes on how to deploy 
+the project on a live system.
 
 ### Prerequisites
 
-This repository assumes Python 3 for now.
+This repository assumes Python 3, and running on Mac or Linux for now.
 ```
 sudo apt-get install python3
 ```
 
 ### Installing
 
-A step by step series of examples that tell you how to get a development env running
+A step by step series of examples that tell you how to get a development env running.
 
-Choose a name for your project
+1. Fork the [Django Production Quick-Start repository](https://github.com/Sheepzez/django-production-quickstart).
 
-```
-DJANGO_PROD_QUICKSTART_NAME="My New Website"
-# TODO: Use this
-```
+2. Choose and set a name for your project (letters and spaces only, keep it short):
 
-Create a virtual environment to use
+    ```
+    export DJANGO_PROD_QUICKSTART_NAME="My New Website"
+    ```
 
-```
-python3 -m venv ~/envs/<my env>
-# TODO: Automatically set venv name
-```
+3. Rename the Django app module and mentions of Django Production Quick-Start:
 
-At the start of each development session, enable the virtual environment in your terminal.
+    ```
+    ./set_up_new_project.sh && git add -A && git commit -m "Finish set-up using Django Production Quick-Start"
+    ```
 
-```
-source ~/envs/<my env>/bin/activate
-```
+4. Create a Python virtual environment to use:
 
-Apply the database migrations locally
+    ```
+    # Uses an environment variable set up when you ran ./set_up_new_project.sh
+    python3 -m venv "~/envs/$PYTHON_MODULE_QUICKSTART_NAME" && source ~/envs/$PYTHON_MODULE_QUICKSTART_NAME/bin/activate
+    ```
 
-```
-python manage.py migrate
-```
+5. Install required dependencies
 
-Run the dev server locally
+    ```
+    pip install -r requirements.txt
+    ```
+   
+6. Apply the database migrations locally
 
-```
-python manage.py runserver
-# Now open localhost:8000 on your browser
-```
+    ```
+    python manage.py migrate
+    ```
 
-End with an example of getting some data out of the system or using it for a little demo
+### Each development session
+
+1. At the start of each development session, enable the virtual environment in your terminal.
+
+    ```
+    # Specific env name will have been printed when you first ran ./set_up_new_project.sh
+    source ~/envs/"$PYTHON_MODULE_QUICKSTART_NAME"/bin/activate
+    ```
+
+2. Run the dev server locally
+
+    ```
+    python manage.py runserver
+    # Now open localhost:8000 on your browser
+    ```
+   
+3. Open [localhost:8000](localhost:8000) in your browser
+    1. When first opening, you should see your chosen name as the page title
 
 ## TODO: Running the tests
 
