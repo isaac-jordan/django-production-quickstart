@@ -11,7 +11,7 @@ the project on a live system.
 
 This repository assumes Python 3, and running on Mac or Linux for now.
 ```
-sudo apt-get install python3
+sudo apt-get install python3 awscli
 ```
 
 ### Installing
@@ -90,9 +90,32 @@ Explain what these tests test and why
 Give an example
 ```
 
-## TODO: Deployment
+## Deployment
 
-Add additional notes about how to deploy this on a live system
+1. (If using GitHub) Get a GitHub [personal access token](https://github.com/settings/tokens) with `repo` scope permission
+
+    ```
+    export GITHUB_OAUTH_TOKEN=<your token>
+    ```
+    
+2. Set environment variables pointing to your repository (examples below)
+
+    ```
+    export GITHUB_USER=sheepzez
+    export GITHUB_REPO=django-production-quickstart
+    ```
+
+3. Set up some AWS credentials
+
+    ```
+    aws configure
+    ```
+
+4. Create the CodePipeline pipeline, and commit the definition file
+
+    ```
+    ./create_pipeline.sh && git add -A && git commit -m "Update pipeline stack definition"
+    ```
 
 ## Built With
 
@@ -119,3 +142,4 @@ This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md
 ## Acknowledgments
 
 * PurpleBooth for this [README template](https://gist.github.com/PurpleBooth/109311bb0361f32d87a2)
+* symphoniacloud for [CloudFormation/CodePipeline examples](https://github.com/symphoniacloud/github-codepipeline)

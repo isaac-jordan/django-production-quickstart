@@ -1,4 +1,5 @@
-set -e
+#!/usr/bin/env bash
+set -eu
 
 ORIGINAL_PROJECT_NAME="Django Prod QuickStart"
 
@@ -17,9 +18,9 @@ echo "Using $PYTHON_MODULE_QUICKSTART_NAME as Python module name for your projec
 
 # Rename the Python module
 mv "$PYTHON_MODULE_ORIGINAL_NAME" "$PYTHON_MODULE_QUICKSTART_NAME"
-find . -name '*.py' -exec sed -i -e "s/$PYTHON_MODULE_ORIGINAL_NAME/$PYTHON_MODULE_QUICKSTART_NAME/g" {} \;
+find . -name '*.{py,yml}' -exec sed -e "s/$PYTHON_MODULE_ORIGINAL_NAME/$PYTHON_MODULE_QUICKSTART_NAME/g" {} \;
 
 # Rename project name in templates
 find . -name '*.html' -exec sed -e "s/$ORIGINAL_PROJECT_NAME/$DJANGO_PROD_QUICKSTART_NAME/g" {} \;
 
-echo "Finished setting up $ORIGINAL_PROJECT_NAME ($PYTHON_MODULE_QUICKSTART_NAME). See README for rest of the getting started instructions."
+echo "Finished code changes for $ORIGINAL_PROJECT_NAME ($PYTHON_MODULE_QUICKSTART_NAME). Follow README for next instructions."
