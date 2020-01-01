@@ -17,9 +17,9 @@ env:
 
 phases:
   install:
+    runtime-versions:
+      python: 3.7
     commands:
-      runtime-versions:
-        python: 3.7
       - pip install virtualenv
       - virtualenv /tmp/env
       - . /tmp/env/bin/activate
