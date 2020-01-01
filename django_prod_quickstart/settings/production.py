@@ -41,9 +41,6 @@ EMAIL_HOST_PASSWORD = os.environ['EMAIL_HOST_PASSWORD']
 EMAIL_PORT = os.environ['EMAIL_HOST_PORT']
 EMAIL_USE_TLS = True
 
-RECAPTCHA_PUBLIC_KEY = os.environ['CAPTCHA_PUBLIC_KEY']
-RECAPTCHA_PRIVATE_KEY = os.environ['CAPTCHA_PRIVATE_KEY']
-
 LOGGING = {
     'version': 1,
     'disable_existing_loggers': False,
