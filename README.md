@@ -101,7 +101,7 @@ Give an example
 2. Set environment variables pointing to your repository (examples below)
 
     ```
-    export GITHUB_USER=sheepzez
+    export GITHUB_USER=Sheepzez
     export GITHUB_REPO=django-production-quickstart
     ```
 
@@ -116,6 +116,9 @@ Give an example
     ```
     ./create_pipeline.sh && git add -A && git commit -m "Update pipeline stack definition"
     ```
+   
+   Future pipeline changes required can be made directly to pipeline.yml, and just 
+   re-run `./create_pipeline.sh` to update the CFN stack
 
 ## Built With
 
@@ -143,3 +146,4 @@ This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md
 
 * PurpleBooth for this [README template](https://gist.github.com/PurpleBooth/109311bb0361f32d87a2)
 * symphoniacloud for [CloudFormation/CodePipeline examples](https://github.com/symphoniacloud/github-codepipeline)
+* mdjnewman for [https://gist.github.com/mdjnewman/b9d722188f4f9c6bb277a37619665e77](https://gist.github.com/mdjnewman/b9d722188f4f9c6bb277a37619665e77)
