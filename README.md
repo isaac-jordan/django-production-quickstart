@@ -36,7 +36,7 @@ A step by step series of examples that tell you how to get a development env run
 
     ```
     # Uses an environment variable set up when you ran ./set_up_new_project.sh
-    python3 -m venv "~/envs/$PYTHON_MODULE_QUICKSTART_NAME" && source ~/envs/$PYTHON_MODULE_QUICKSTART_NAME/bin/activate
+    python3 -m venv ~/envs/$PYTHON_MODULE_QUICKSTART_NAME && source ~/envs/$PYTHON_MODULE_QUICKSTART_NAME/bin/activate
     ```
 
 5. Install required dependencies
