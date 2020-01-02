@@ -30,8 +30,8 @@ phases:
   pre_build:
     commands:
       - echo "Running static files collection"
-      - python manage.py collectstatic --noinput --clear
-      - python manage.py compress || true
+#      - python manage.py collectstatic --noinput --clear # TODO: Run in lambda via Zappa command
+#      - python manage.py compress || true # TODO: Run in lambda via Zappa command
       - echo "Running tests"
       - coverage run --source='.' --omit='src/*' manage.py test
       - export FAILED_TESTS=FALSE
@@ -45,5 +45,5 @@ phases:
       - mv "$tmp" zappa_settings.json
       - zappa update prod
       - echo "Running database migration"
-      - python manage.py migrate
+#      - python manage.py migrate # TODO: Run in lambda via Zappa command
       - echo "Successfully ran tests and deployed to prod"
