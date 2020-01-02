@@ -119,6 +119,10 @@ Give an example
    
    Future pipeline changes required can be made directly to pipeline.yml, and just 
    re-run `./create_pipeline.sh` to update the CFN stack
+   
+5. Deploy Zappa manually first time (TBC)
+
+6. Replace secret variables with production values (TBC)
 
 ## Built With
 

@@ -10,7 +10,7 @@
     "prod": {
         "aws_region": "eu-west-1",
         "django_settings": "django_prod_quickstart.settings.production",
-        "project_name": "personal-site",
+        "project_name": "django_prod_quickstart",
         "runtime": "python3.6",
         "s3_bucket": "TO BE PROVIDED",
         "slim_handler": false,
@@ -23,18 +23,18 @@
         "certificate_arn": "TO BE PROVIDED",
         "domain": "TO BE PROVIDED",
         "environment_variables": {
-            "AWS_STORAGE_BUCKET_NAME": "TO BE PROVIDED",
-            "DJANGO_SECRET_KEY": "TO BE PROVIDED",
-            "DJANGO_SETTINGS_MODULE": "django_prod_quickstart.settings.production",
-            "EMAIL_HOST": "TO BE PROVIDED",
-            "EMAIL_HOST_PASSWORD": "TO BE PROVIDED",
-            "EMAIL_HOST_PORT": "587",
-            "EMAIL_HOST_USER": "TO BE PROVIDED",
-            "RDS_DB_NAME": "TO BE PROVIDED",
-            "RDS_HOSTNAME": "TO BE PROVIDED",
-            "RDS_PASSWORD": "TO BE PROVIDED",
-            "RDS_PORT": "5432",
-            "RDS_USERNAME": "TO BE PROVIDED"
+            "REMOVEME_AWS_STORAGE_BUCKET_NAME": "TO BE PROVIDED",
+            "REMOVEME_DJANGO_SECRET_KEY": "TO BE PROVIDED",
+            "REMOVEME_DJANGO_SETTINGS_MODULE": "django_prod_quickstart.settings.production",
+            "REMOVEME_EMAIL_HOST": "TO BE PROVIDED",
+            "REMOVEME_EMAIL_HOST_PASSWORD": "TO BE PROVIDED",
+            "REMOVEME_EMAIL_HOST_PORT": "587",
+            "REMOVEME_EMAIL_HOST_USER": "TO BE PROVIDED",
+            "REMOVEME_RDS_DB_NAME": "TO BE PROVIDED",
+            "REMOVEME_RDS_HOSTNAME": "TO BE PROVIDED",
+            "REMOVEME_RDS_PASSWORD": "TO BE PROVIDED",
+            "REMOVEME_RDS_PORT": "5432",
+            "REMOVEME_RDS_USERNAME": "TO BE PROVIDED"
         }
     }
 }
