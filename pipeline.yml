@@ -167,6 +167,8 @@ Resources:
             Principal:
               Service:
                 - codebuild.amazonaws.com
+      ManagedPolicyArns:
+        - arn:aws:iam::aws:policy/AdministratorAccess #TODO: Reduce permissions
   CodeBuildServicePolicy:
     Type: AWS::IAM::Policy
     Properties:
