@@ -4,7 +4,7 @@
         "django_settings": "django_prod_quickstart.settings.production",
         "project_name": "django_prod_quickstart",
         "runtime": "python3.7",
-        "s3_bucket": "zappa-lambda-django_prod_quickstart",
+        "s3_bucket": "zappa-lambda-django-prod-quickstart",
         "aws_environment_variables": {
             "PLACEHOLDER_AWS_STORAGE_BUCKET_NAME": "TO BE PROVIDED",
             "PLACEHOLDER_DJANGO_SECRET_KEY": "TO BE PROVIDED",
