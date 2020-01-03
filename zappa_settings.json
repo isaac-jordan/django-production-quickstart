@@ -1,40 +1,63 @@
 {
-    "dev": {
-        "aws_region": "eu-west-1",
-        "django_settings": "django_prod_quickstart.settings.production",
-        "profile_name": "default",
-        "project_name": "django_prod_quickstart",
-        "runtime": "python3.6",
-        "s3_bucket": "TO BE PROVIDED"
-    },
     "prod": {
         "aws_region": "eu-west-1",
         "django_settings": "django_prod_quickstart.settings.production",
         "project_name": "django_prod_quickstart",
-        "runtime": "python3.6",
-        "s3_bucket": "TO BE PROVIDED",
-        "slim_handler": false,
-        "manage_roles": false,
-        "keep_warm": true,
-        "role_name": "TO BE PROVIDED",
-        "role_arn": "TO BE PROVIDED",
-        "debug": false,
-        "log_level": "INFO",
-        "certificate_arn": "TO BE PROVIDED",
-        "domain": "TO BE PROVIDED",
-        "environment_variables": {
-            "REMOVEME_AWS_STORAGE_BUCKET_NAME": "TO BE PROVIDED",
-            "REMOVEME_DJANGO_SECRET_KEY": "TO BE PROVIDED",
-            "REMOVEME_DJANGO_SETTINGS_MODULE": "django_prod_quickstart.settings.production",
-            "REMOVEME_EMAIL_HOST": "TO BE PROVIDED",
-            "REMOVEME_EMAIL_HOST_PASSWORD": "TO BE PROVIDED",
-            "REMOVEME_EMAIL_HOST_PORT": "587",
-            "REMOVEME_EMAIL_HOST_USER": "TO BE PROVIDED",
-            "REMOVEME_RDS_DB_NAME": "TO BE PROVIDED",
-            "REMOVEME_RDS_HOSTNAME": "TO BE PROVIDED",
-            "REMOVEME_RDS_PASSWORD": "TO BE PROVIDED",
-            "REMOVEME_RDS_PORT": "5432",
-            "REMOVEME_RDS_USERNAME": "TO BE PROVIDED"
+        "runtime": "python3.7",
+        "s3_bucket": "zappa-lambda-django_prod_quickstart",
+        "aws_environment_variables": {
+            "PLACEHOLDER_AWS_STORAGE_BUCKET_NAME": "TO BE PROVIDED",
+            "PLACEHOLDER_DJANGO_SECRET_KEY": "TO BE PROVIDED",
+            "PLACEHOLDER_DJANGO_SETTINGS_MODULE": "django_prod_quickstart.settings.production",
+            "PLACEHOLDER_EMAIL_HOST": "TO BE PROVIDED",
+            "PLACEHOLDER_EMAIL_HOST_PASSWORD": "TO BE PROVIDED",
+            "PLACEHOLDER_EMAIL_HOST_PORT": "587",
+            "PLACEHOLDER_EMAIL_HOST_USER": "TO BE PROVIDED",
+            "PLACEHOLDER_RDS_DB_NAME": "TO BE PROVIDED",
+            "PLACEHOLDER_RDS_HOSTNAME": "TO BE PROVIDED",
+            "PLACEHOLDER_RDS_PASSWORD": "TO BE PROVIDED",
+            "PLACEHOLDER_RDS_PORT": "5432",
+            "PLACEHOLDER_RDS_USERNAME": "TO BE PROVIDED"
         }
+    },
+    "prod_ap_northeast_1": {
+        "aws_region": "ap-northeast-1",
+        "extends": "prod"
+    },
+    "prod_ap_south_1": {
+        "aws_region": "ap-south-1",
+        "extends": "prod"
+    },
+    "prod_ap_southeast_1": {
+        "aws_region": "ap-southeast-1",
+        "extends": "prod"
+    },
+    "prod_ca_central_1": {
+        "aws_region": "ca-central-1",
+        "extends": "prod"
+    },
+    "prod_cn_north_1": {
+        "aws_region": "cn-north-1",
+        "extends": "prod"
+    },
+    "prod_cn_northwest_1": {
+        "aws_region": "cn-northwest-1",
+        "extends": "prod"
+    },
+    "prod_eu_central_1": {
+        "aws_region": "eu-central-1",
+        "extends": "prod"
+    },
+    "prod_sa_east_1": {
+        "aws_region": "sa-east-1",
+        "extends": "prod"
+    },
+    "prod_us_east_1": {
+        "aws_region": "us-east-1",
+        "extends": "prod"
+    },
+    "prod_us_west_1": {
+        "aws_region": "us-west-1",
+        "extends": "prod"
     }
 }

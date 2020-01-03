@@ -119,10 +119,14 @@ Give an example
    
    Future pipeline changes required can be made directly to pipeline.yml, and just 
    re-run `./create_pipeline.sh` to update the CFN stack
-   
-5. Deploy Zappa manually first time (TBC)
 
-6. Replace secret variables with production values (TBC)
+5. Replace secret variables with production values
+    1. Sign into AWS Console
+    2. Find your new lambda
+    3. Remove "PLACEHOLDER_" from environment variable names, and fill out values for production
+    
+    During the next deploy, the "PLACEHOLDER_" variables will re-appear, but these can just be left.
+    Your custom values will be left untouched.
 
 ## Built With
 
