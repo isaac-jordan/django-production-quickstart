@@ -60,56 +60,56 @@ Resources:
       RestartExecutionOnUpdate: true
       RoleArn: !GetAtt CodePipelineRole.Arn
       Stages:
-      - Name: Source
-        Actions:
         - Name: Source
-          InputArtifacts: []
-          ActionTypeId:
-            Category: Source
-            Owner: ThirdParty
-            Version: 1
-            Provider: GitHub
-          OutputArtifacts:
-          - Name: SourceCodeOutputArtifact
-          Configuration:
-            Owner: !Ref GitHubOwner
-            Repo: !Ref GitHubRepo
-            Branch: !Ref GitHubBranch
-            PollForSourceChanges: false
-            OAuthToken: !Ref GitHubOAuthToken
-          RunOrder: 1
-      - Name: deploy-extra-cloudFormation
-        Actions:
-        - Name: CloudFormationDeploy
-          ActionTypeId:
-            Category: Deploy
-            Owner: AWS
-            Provider: CloudFormation
-            Version: '1'
-          InputArtifacts:
-            - Name: SourceCodeOutputArtifact
-          Configuration:
-            ActionMode: CREATE_UPDATE
-            Capabilities: CAPABILITY_IAM
-            RoleArn: !GetAtt CloudformationRole.Arn
-            StackName: !Ref ApplicationStackName
-            TemplatePath: !Sub "SourceCode::application.yaml"
-          RunOrder: 1
-      - Name: run-django-tests-and-deploy-lambda
-        Actions:
-        - Name: CodeBuild
-          ActionTypeId:
-            Category: Build
-            Owner: AWS
-            Version: 1
-            Provider: CodeBuild
-          InputArtifacts:
-          - Name: SourceCodeOutputArtifact
-          OutputArtifacts:
-          - Name: BuildOutputArtifact
-          Configuration:
-            ProjectName: !Ref PipelineName
-          RunOrder: 1
+          Actions:
+            - Name: Source
+              InputArtifacts: []
+              ActionTypeId:
+                Category: Source
+                Owner: ThirdParty
+                Version: 1
+                Provider: GitHub
+              OutputArtifacts:
+                - Name: SourceCodeOutputArtifact
+              Configuration:
+                Owner: !Ref GitHubOwner
+                Repo: !Ref GitHubRepo
+                Branch: !Ref GitHubBranch
+                PollForSourceChanges: false
+                OAuthToken: !Ref GitHubOAuthToken
+              RunOrder: 1
+        - Name: deploy-extra-cloudFormation
+          Actions:
+            - Name: CloudFormationDeploy
+              ActionTypeId:
+                Category: Deploy
+                Owner: AWS
+                Provider: CloudFormation
+                Version: '1'
+              InputArtifacts:
+                - Name: SourceCodeOutputArtifact
+              Configuration:
+                ActionMode: CREATE_UPDATE
+                Capabilities: CAPABILITY_IAM
+                RoleArn: !GetAtt CloudformationRole.Arn
+                StackName: !Ref ApplicationStackName
+                TemplatePath: !Sub "SourceCode::application.yaml"
+              RunOrder: 1
+        - Name: run-django-tests-and-deploy-lambda
+          Actions:
+            - Name: CodeBuild
+              ActionTypeId:
+                Category: Build
+                Owner: AWS
+                Version: 1
+                Provider: CodeBuild
+              InputArtifacts:
+                - Name: SourceCodeOutputArtifact
+              OutputArtifacts:
+                - Name: BuildOutputArtifact
+              Configuration:
+                ProjectName: !Ref PipelineName
+              RunOrder: 1
 
   # 'GithubWebhook' satisfies two requirements:
   # -- Means that updates are pushed from GitHub, rather than AWS having to poll
@@ -122,8 +122,8 @@ Resources:
         SecretToken: !Ref GitHubOAuthToken
       RegisterWithThirdParty: 'true'
       Filters:
-      - JsonPath: "$.ref"
-        MatchEquals: refs/heads/{Branch}
+        - JsonPath: "$.ref"
+          MatchEquals: refs/heads/{Branch}
       TargetPipeline: !Ref CodePipeline
       TargetAction: Source
       TargetPipelineVersion: !GetAtt CodePipeline.Version
