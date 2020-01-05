@@ -78,21 +78,6 @@ Resources:
             PollForSourceChanges: false
             OAuthToken: !Ref GitHubOAuthToken
           RunOrder: 1
-      - Name: run-django-tests-and-deploy-lambda
-        Actions:
-        - Name: CodeBuild
-          ActionTypeId:
-            Category: Build
-            Owner: AWS
-            Version: 1
-            Provider: CodeBuild
-          InputArtifacts:
-          - Name: SourceCodeOutputArtifact
-          OutputArtifacts:
-          - Name: BuildOutputArtifact
-          Configuration:
-            ProjectName: !Ref PipelineName
-          RunOrder: 1
       - Name: deploy-extra-cloudFormation
         Actions:
         - Name: CloudFormationDeploy
@@ -109,6 +94,21 @@ Resources:
             RoleArn: !GetAtt CloudformationRole.Arn
             StackName: !Ref ApplicationStackName
             TemplatePath: !Sub "SourceCode::application.yaml"
+          RunOrder: 1
+      - Name: run-django-tests-and-deploy-lambda
+        Actions:
+        - Name: CodeBuild
+          ActionTypeId:
+            Category: Build
+            Owner: AWS
+            Version: 1
+            Provider: CodeBuild
+          InputArtifacts:
+          - Name: SourceCodeOutputArtifact
+          OutputArtifacts:
+          - Name: BuildOutputArtifact
+          Configuration:
+            ProjectName: !Ref PipelineName
           RunOrder: 1
 
   # 'GithubWebhook' satisfies two requirements:
