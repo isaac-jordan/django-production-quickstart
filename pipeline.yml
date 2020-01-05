@@ -93,24 +93,23 @@ Resources:
           Configuration:
             ProjectName: !Ref PipelineName
           RunOrder: 1
-# Commented out until extra CloudFormation is required (e.g. to set up CDN buckets and website domains)
-#      - Name: deploy-extra-cloudFormation
-#        Actions:
-#        - Name: CloudFormationDeploy
-#          ActionTypeId:
-#            Category: Deploy
-#            Owner: AWS
-#            Provider: CloudFormation
-#            Version: '1'
-#          InputArtifacts:
-#            - Name: SourceCode
-#          Configuration:
-#            ActionMode: CREATE_UPDATE
-#            Capabilities: CAPABILITY_IAM
-#            RoleArn: !GetAtt CloudformationRole.Arn
-#            StackName: !Ref ApplicationStackName
-#            TemplatePath: !Sub "SourceCode::application.yaml"
-#          RunOrder: 1
+      - Name: deploy-extra-cloudFormation
+        Actions:
+        - Name: CloudFormationDeploy
+          ActionTypeId:
+            Category: Deploy
+            Owner: AWS
+            Provider: CloudFormation
+            Version: '1'
+          InputArtifacts:
+            - Name: SourceCodeOutputArtifact
+          Configuration:
+            ActionMode: CREATE_UPDATE
+            Capabilities: CAPABILITY_IAM
+            RoleArn: !GetAtt CloudformationRole.Arn
+            StackName: !Ref ApplicationStackName
+            TemplatePath: !Sub "SourceCode::application.yaml"
+          RunOrder: 1
 
   # 'GithubWebhook' satisfies two requirements:
   # -- Means that updates are pushed from GitHub, rather than AWS having to poll
