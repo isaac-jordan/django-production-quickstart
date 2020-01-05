@@ -29,21 +29,22 @@ phases:
       - curl -qL -o jq https://stedolan.github.io/jq/download/linux64/jq && chmod +x ./jq
   pre_build:
     commands:
-      - echo "Running static files collection"
-#      - python manage.py collectstatic --noinput --clear # TODO: Run in lambda via Zappa command
-#      - python manage.py compress || true # TODO: Run in lambda via Zappa command
-      - echo "Running tests"
+      - echo "Running unit tests"
       - coverage run --source='.' --omit='src/*' manage.py test
       - export FAILED_TESTS=FALSE
       - echo "Generating coverage reports"
       - coverage html
+      - echo "Successfully ran tests and generated report"
   build:
     commands:
-      - echo "Deploying to prod"
+      - echo "Deploying lambda code to prod"
       - tmp=$(mktemp)
       - ./jq ".prod.environment_variables.CODEBUILD_RESOLVED_SOURCE_VERSION = \"$CODEBUILD_RESOLVED_SOURCE_VERSION\"" zappa_settings.json > "$tmp"
       - mv "$tmp" zappa_settings.json
       - zappa update prod
+      - echo "Running static files collection"
+      - zappa manage prod "collectstatic --noinput --clear"
+      - zappa manage prod "compress"
       - echo "Running database migration"
-#      - python manage.py migrate # TODO: Run in lambda via Zappa command
-      - echo "Successfully ran tests and deployed to prod"
+      - zappa manage prod "migrate"
+      - echo "Successfully deployed to prod"
