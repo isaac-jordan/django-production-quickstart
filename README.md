@@ -11,7 +11,9 @@ the project on a live system.
 
 This repository assumes Python 3, and running on Mac or Linux for now.
 ```
-sudo apt-get install python3 awscli
+sudo add-apt-repository ppa:deadsnakes/ppa # For Python3.7 PPA
+sudo apt update
+sudo apt install build-essential python3.7 python3.7-venv python3.7-dev awscli
 ```
 
 ### Installing
@@ -36,7 +38,7 @@ A step by step series of examples that tell you how to get a development env run
 
     ```
     # Uses an environment variable set up when you ran ./set_up_new_project.sh
-    python3 -m venv ~/envs/$PYTHON_MODULE_QUICKSTART_NAME && source ~/envs/$PYTHON_MODULE_QUICKSTART_NAME/bin/activate
+    python3.7 -m venv ~/envs/$PYTHON_MODULE_QUICKSTART_NAME && source ~/envs/$PYTHON_MODULE_QUICKSTART_NAME/bin/activate
     ```
 
 5. Install required dependencies
