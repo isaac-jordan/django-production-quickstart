@@ -17,6 +17,10 @@ mv pipeline-edited.yml pipeline.yml
 sed "s/APP_STACK_NAME_PLACEHOLDER/$PIPELINE_QUICKSTART_NAME-app-stack/g" pipeline.yml > pipeline-edited.yml
 mv pipeline-edited.yml pipeline.yml
 
+# Replace variables in application.yml
+sed "s/APP_NAME_PLACEHOLDER/$PIPELINE_QUICKSTART_NAME/g" application.yml > application-edited.yml
+mv application-edited.yml application.yml
+
 PIPELINE_STACK_NAME="$PIPELINE_QUICKSTART_NAME-codepipeline-stack"
 
 # Mostly copied from https://gist.github.com/mdjnewman/b9d722188f4f9c6bb277a37619665e77

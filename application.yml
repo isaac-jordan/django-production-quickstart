@@ -1,0 +1,17 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Description: APP_NAME_PLACEHOLDER application resources
+
+Parameters:
+  ApplicationName:
+    Type: String
+    Default: APP_NAME_PLACEHOLDER
+    AllowedPattern: "[A-Za-z0-9-]+"
+
+Resources:
+  StaticAssetsS3Bucket:
+    Type: AWS::S3::Bucket
+    DeletionPolicy: Retain
+    Properties:
+      BucketName: !Sub
+        - '${appname}-static-assets'
+        - { appname: Ref ApplicationName }
