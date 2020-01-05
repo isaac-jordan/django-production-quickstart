@@ -93,7 +93,7 @@ Resources:
                 Capabilities: CAPABILITY_IAM
                 RoleArn: !GetAtt CloudformationRole.Arn
                 StackName: !Ref ApplicationStackName
-                TemplatePath: !Sub "SourceCodeOutputArtifact::application.yaml"
+                TemplatePath: !Sub "SourceCodeOutputArtifact::application.yml"
               RunOrder: 1
         - Name: run-django-tests-and-deploy-lambda
           Actions:
