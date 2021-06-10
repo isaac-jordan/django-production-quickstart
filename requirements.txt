@@ -6,7 +6,7 @@ cfn-flip==1.2.2
 chardet==3.0.4
 Click==7.0
 coverage==5.0.1
-Django==2.2.8
+Django==2.2.24
 django-appconf==1.0.3
 django-compressor==2.3
 django-storages==1.8
